@@ -1,6 +1,8 @@
 # Wireless-robot-control
 
-This project is for controlling a differential drive robot wirelessly. 
+This project is for controlling a differential drive robot wirelessly using an ESP32 board. Click [this link](https://drive.google.com/file/d/1X6eS6V8n_o-cJLHjV87ageG8xKd46kXh/view?usp=sharing) for the demo.
+
+![Example screenshot](./img/screenshot.png)
 
 ## Hardware Integration and Communication
 
@@ -39,14 +41,13 @@ The DC motor requires a bigqjump in current to move, so the motorslshould be pow
 ![Example screenshot](./img/screenshot.png)
 
 ### Socket Server-Client Connection Model
-Now, to transmit the velocity values and the angles to the robot we need some sort of connection between the robot and the Pc on which the image will be processed. So, we use a Server- Client Model to transmit the data. In a server-client architecture, when the client computer sends a request for data to theeserver through the internet, the server accepts the requested process and delivers the data packets requested back to the client. Socket is the endpoint of a bi-directional communicationsechannel between the server and the client. Sockets communicate within a process, between processes on the same machine, or between processes on different machines. For any communication with a remote program, we have to connect through a socket port.
+Now, to transmit the velocity values and the angles to the robot we need some sort of connection between the robot and the Pc on which the image will be processed. So, we use a Server- Client Model to transmit the data. In a server-client architecture, when the client computer sends a request for data to theeserver through the internet, the server accepts the requested process and delivers the data packets requested back to the client. Socket is the endpoint of a bi-directional communications channel between the server and the client. Sockets communicate within a process, between processes on the same machine, or between processes on different machines. For any communication with a remote program, we have to connect through a socket port.
 
 In this project, the Pc is the socket server and the ESP32 board is the client and an end to end encrypted connection is setup between them via the mobile hotspot of the Pc. Here, the Client sends the request to the server to send the data and waits till it receives the velocity and angle values from the Pc. The Pc calculates these values by tracking the robot through the overhead camera and applying the motion planning and control algorithms on it.
 
 ![Example screenshot](./img/screenshot.png)
 
-
-
-
-
+### How to run the code 
+1) Build and upload the *Robot_control_using_Wifi.ino* from **Data_transfer_Client** directory to the ESP32 board(mounted on the robot).
+2) Run the *data_transfer to control robot.py* from **Data_transfer_Server** in a python ide on your system.
 
