@@ -2,7 +2,7 @@
 
 This project is for controlling a differential drive robot wirelessly using an ESP32 board. Click [this link](https://drive.google.com/file/d/1X6eS6V8n_o-cJLHjV87ageG8xKd46kXh/view?usp=sharing) for the demo.
 
-![Example screenshot](./img/screenshot.png)
+![Robot](./git_images/IMG20200320132139.jpg)
 
 ## Hardware Integration and Communication
 
@@ -18,7 +18,7 @@ Motor Driver: A motor driver is an electronic circuit which is used to run the m
 
 Here, we are going to use L298N motor driver. It is a dual channel motor driver i.e it allows us to control 2 motors simultaneously thus it is perfect for our application. Also it can handle 3A at 35V. Furthermore, it also has PWM pins to provide intermediate voltages.
 
-![Example screenshot](./img/screenshot.png)
+![MD](./git_images/Capture.PNG)
 
 ### Hardware Integration
 Below figure shows the connections between the controller, motor-driver, power supply and the motor. The motor driver has a two terminal blocks mounted at each side for each motor. 
@@ -31,23 +31,23 @@ GND: Ground terminal
 
 Jumper: If we supply more than 12V, you should remove the jumper, also if jumper is in place it uses the motor power supply to provide to the onboard chip.
 
-	If a HIGH signal is sent to the enable 1 pin, motor 1 is ready to be controlled with the maximum speed
-	If adLOW signal is sent to the enable 1 pin, motor 1 turns off.
-	If a PWM signal is sent to the motor driver, we can control the RPM (Rotations Per Minute) of the motor. The motor speed is directly proportional to the duty cycle. But, if a signal lower than a threshold is sent the motors might make a continuous buzzing sound.
+1)	If a HIGH signal is sent to the enable 1 pin, motor 1 is ready to be controlled with the maximum speed.
+2)	If adLOW signal is sent to the enable 1 pin, motor 1 turns off.
+3)	If a PWM signal is sent to the motor driver, we can control the RPM (Rotations Per Minute) of the motor. The motor speed is directly proportional to the duty cycle. But, if a signal lower than a threshold is sent the motors might make a continuous buzzing sound.
 
 
 The DC motor requires a bigqjump in current to move, so the motorslshould be powered using an external power source from the ESP32. We are using a 12V/ 10A SMPS (Switch mode Power Supply) to power the motors. The switchwbetween the battery holder and the motorqdriver is optional, but it is very handy to cut and apply power. This way you don’t need to constantly connect and thenfdisconnect the wiring to save power. Also a 0.1uF ceramicdcapacitor is soldered to the positive and negativeeterminals of the DC motor, as shown in the diagramlto help smoothmout any voltagekspikes.
 
-![Example screenshot](./img/screenshot.png)
+![Circuit](./git_images/connection.PNG)
 
 ### Socket Server-Client Connection Model
 Now, to transmit the velocity values and the angles to the robot we need some sort of connection between the robot and the Pc on which the image will be processed. So, we use a Server- Client Model to transmit the data. In a server-client architecture, when the client computer sends a request for data to theeserver through the internet, the server accepts the requested process and delivers the data packets requested back to the client. Socket is the endpoint of a bi-directional communications channel between the server and the client. Sockets communicate within a process, between processes on the same machine, or between processes on different machines. For any communication with a remote program, we have to connect through a socket port.
 
 In this project, the Pc is the socket server and the ESP32 board is the client and an end to end encrypted connection is setup between them via the mobile hotspot of the Pc. Here, the Client sends the request to the server to send the data and waits till it receives the velocity and angle values from the Pc. The Pc calculates these values by tracking the robot through the overhead camera and applying the motion planning and control algorithms on it.
 
-![Example screenshot](./img/screenshot.png)
+![server-client](./git_images/server-client.PNG)
 
 ### How to run the code 
 1) Build and upload the *Robot_control_using_Wifi.ino* from **Data_transfer_Client** directory to the ESP32 board(mounted on the robot).
-2) Run the *data_transfer to control robot.py* from **Data_transfer_Server** in a python ide on your system.
+2) Run the *data_transfer to control robot.py* from **Data_transfer_Server** in a python ide on your system.(Required modules : **socket** and **pygame**)
 
