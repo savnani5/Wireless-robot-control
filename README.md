@@ -2,7 +2,7 @@
 
 This project is for controlling a differential drive robot wirelessly using an ESP32 board. Click [this link](https://drive.google.com/file/d/1X6eS6V8n_o-cJLHjV87ageG8xKd46kXh/view?usp=sharing) for the demo.
 
-![Robot](./git_images/IMG20200320132139.jpg)
+![Robot](./git_images/robot.PNG)
 
 ## Hardware Integration and Communication
 
