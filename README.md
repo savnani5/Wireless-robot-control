@@ -4,6 +4,7 @@ This project is for controlling a differential drive robot wirelessly using an E
 
 ![Robot](./git_images/robot.PNG)
 
+---
 ## Hardware Integration and Communication
 
 This section describes required hardware components, their connections, layout architecture, and the communication layer between the controller and the motor driver. This chapter will focus on the working of the controller and motor control. A client-server protocol is also established between the laptop and the controller
@@ -47,6 +48,7 @@ In this project, the Pc is the socket server and the ESP32 board is the client a
 
 ![server-client](./git_images/server-client.PNG)
 
+---
 ### How to run the code 
 1) Build and upload the *Robot_control_using_Wifi.ino* from **Data_transfer_Client** directory to the ESP32 board(mounted on the robot).
 2) Run the *data_transfer to control robot.py* from **Data_transfer_Server** in a python ide on your system.(Required modules : **socket** and **pygame**)
